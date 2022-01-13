@@ -20,7 +20,7 @@
 ## Technolgies 
 - postgres
 - Typescript
--express
--javascript
--jasmine
+- express
+- javascript
+- jasmine
 
