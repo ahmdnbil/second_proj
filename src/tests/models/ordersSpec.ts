@@ -19,6 +19,10 @@ describe('Order model', () => {
   it('having show method', () => {
     expect(storeOrder.show).toBeDefined();
   });
+  it('having adding procuct-order method', () => {
+    expect(storeOrder.addingProduct).toBeDefined();
+  });
+
   it('create method to add order', async () => {
     await storeUser.create({
       firstName: 'ahmed',
