@@ -4,7 +4,6 @@ the order table has information from users and products tables to follow up the 
 of the website and their products and orders 
 
 ##Database Schema
------------------------------------------------------------------
       Tabels  |   Attributes  |        type                     |
 ------------- | ------------- |-------------------------------- |
 users         |  id           |serial primary key               |
@@ -32,4 +31,3 @@ orders        |  id           |serial primary key               |
               |user_id        |integer                          |
               |               |FOREIGN KEY (user_id)            |
               |               |REFERENCES users(id)             |
------------------------------------------------------------------
