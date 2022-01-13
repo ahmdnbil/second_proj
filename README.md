@@ -13,7 +13,7 @@
 - for testing the project you can write the next command:
    - `npm run test`
    - it will make a lot of commands by the script of testing:
-    - ` "test": "set ENV=test && db-migrate --env test reset && db-migrate --env test up && jasmine-ts && db-migrate --env test reset"
+    - ` "test": "set ENV=test && db-migrate --env test reset && db-migrate --env test up && jasmine-ts && db-migrate --env test reset" `
    - it will create testing database and making migrations to this database and testing the models'
    - methods by `jasmine` the testing will make before building the project to the type script files
 
