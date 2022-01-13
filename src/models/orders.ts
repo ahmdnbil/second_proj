@@ -16,26 +16,22 @@ export type ProductOrder = {
 };
 
 export class StoreOrder {
-  async addingProduct(
-    quantity: number,
-    product_id: number,
-    order_id: number
-  ): Promise<ProductOrder[]> {
+  async addingProduct(P: ProductOrder): Promise<ProductOrder[]> {
     try {
       const connection = await Client.connect();
       const query =
         'insert into orders_products (quantity,product_id,order_id) values ($1,$2,$3) returning *';
       const result = await connection.query(query, [
-        quantity,
-        order_id,
-        product_id,
+        P.quantity,
+        P.order_id,
+        P.product_id,
       ]);
       const row = result.rows[0];
       connection.release();
       return row;
     } catch (e) {
       throw new Error(
-        `can't add this product ${product_id} to its order ${order_id} due to this problem ${e}`
+        `can't add this product ${P.product_id} to its order ${P.order_id} due to this problem ${e}`
       );
     }
   }

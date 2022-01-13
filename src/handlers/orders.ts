@@ -1,5 +1,5 @@
 import express from 'express';
-import { Order, StoreOrder } from '../models/orders';
+import { ProductOrder, Order, StoreOrder } from '../models/orders';
 
 const storeOrder = new StoreOrder();
 
@@ -11,6 +11,21 @@ const index = async (_req: express.Request, res: express.Response) => {
 const show = async (_req: express.Request, res: express.Response) => {
   const product = await storeOrder.show(_req.body.id);
   res.json(product);
+};
+
+const addingProduct = async (_req: express.Request, res: express.Response) => {
+  const order: ProductOrder = {
+    order_id: _req.body.order_id,
+    product_id: _req.body.product_id,
+    quantity: _req.body.quantity,
+  };
+  try {
+    const adding = await storeOrder.addingProduct(order);
+    res.json(adding);
+  } catch (e) {
+    res.status(400);
+    res.json(e);
+  }
 };
 
 const create = async (_req: express.Request, res: express.Response) => {
@@ -39,6 +54,7 @@ const orderRoutes = (app: express.Application) => {
   app.get('/orders/{:id}', show);
   app.post('/orders', create);
   app.delete('/orders', deleted);
+  app.post('/orders/add', addingProduct);
 };
 
 export default orderRoutes;
