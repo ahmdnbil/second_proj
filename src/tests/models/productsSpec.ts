@@ -20,21 +20,21 @@ describe('product model', () => {
     const product = await storeProduct.create({ name: 'TV', price: '50$' });
 
     expect(product).toEqual({
-      id: 2,
+      id: 3,
       name: 'TV',
       price: '50$',
     });
   });
   it('show method to show the product', async () => {
-    const result = await storeProduct.show(2);
+    const result = await storeProduct.show(3);
     expect(result).toEqual({
-      id: 2,
+      id: 3,
       name: 'TV',
       price: '50$',
     });
   });
   it('index method to show all products', async () => {
     const result = await storeProduct.index();
-    expect(result.length).toEqual(2);
+    expect(result.length).toEqual(3);
   });
 });

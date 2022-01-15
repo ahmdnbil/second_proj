@@ -2,8 +2,6 @@ import Client from '../database';
 
 export type Order = {
   id?: number;
-  product_id: number;
-  quantity: number;
   user_id: number;
   status: string;
 };
@@ -68,13 +66,8 @@ export class StoreOrder {
     try {
       const connection = await Client.connect();
       const query =
-        'insert into orders (product_id,quantity,user_id,status) values ($1,$2,$3,$4) returning *';
-      const result = await connection.query(query, [
-        o.product_id,
-        o.quantity,
-        o.user_id,
-        o.status,
-      ]);
+        'insert into orders (user_id,status) values ($1,$2) returning *';
+      const result = await connection.query(query, [o.user_id, o.status]);
       const order = result.rows[0];
       connection.release();
       return order;

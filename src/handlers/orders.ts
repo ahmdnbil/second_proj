@@ -30,8 +30,6 @@ const addingProduct = async (_req: express.Request, res: express.Response) => {
 
 const create = async (_req: express.Request, res: express.Response) => {
   const order: Order = {
-    product_id: _req.body.product_id,
-    quantity: _req.body.quantity,
     user_id: _req.body.user_id,
     status: _req.body.status,
   };
@@ -51,7 +49,7 @@ const deleted = async (_req: express.Request, res: express.Response) => {
 
 const orderRoutes = (app: express.Application) => {
   app.get('/orders', index);
-  app.get('/orders/{:id}', show);
+  app.get('/orders/id', show);
   app.post('/orders', create);
   app.delete('/orders', deleted);
   app.post('/orders/add', addingProduct);

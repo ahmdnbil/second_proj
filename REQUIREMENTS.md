@@ -17,8 +17,7 @@ of the website and their products and orders
 |               | price         |VARCHAR(100)                                              |
 |               |               |                                                          | 
 |orders         |  id           |serial primary key                                        |
-|               |product_id     |integer, FOREIGN KEY (product_id) REFERENCES products(id) |                   
-|               |quantity       |integer unique                                            |
+|               |status         |VARCHAR                                                   |
 |               |user_id        |integer, FOREIGN KEY (user_id) REFERENCES users(id)       |              
 |               |               |                                                          |
 |orders_products|  id           |serial primary key                                        |
@@ -26,3 +25,35 @@ of the website and their products and orders
 |               |quantity       |integer unique                                            |
 |               |user_id        |integer, FOREIGN KEY (user_id) REFERENCES users(id)       |
 
+## API endpoints
+
+### users
+
+|    Endpoint   |   Attributes  |        Parameters                                        |
+|-------------  | ------------- |----------------------------------------------------------|
+|/users         |  GET          |N/A                                                       |
+|/users         |  POST         |firstName,lastName,password                               |
+|/users         |  PUT          |id,firstName,lastName,password                            | 
+|/users         |  DELETE       |id                                                        |
+|/user/id       |  GET          |id                                                        |  
+
+
+### Products
+
+|    Endpoint   |   Attributes  |        Parameters                                        |
+|-------------  | ------------- |----------------------------------------------------------|
+|/products      |  GET          |N/A                                                       |
+|/products      |  POST         |firstName,lastName,password                               |
+|/products      |  PUT          |id,firstName,lastName,password                            | 
+|/products      |  DELETE       |id                                                        |
+|/products/id   |  GET          |id                                                        |
+
+### orders
+
+|    Endpoint   |   Attributes  |        Parameters                                        |
+|-------------  | ------------- |----------------------------------------------------------|
+|/orders        |  GET          |N/A                                                       |
+|/orders        |  POST         |firstName,lastName,password                               |
+|/orders        |  PUT          |id,firstName,lastName,password                            | 
+|/orders        |  DELETE       |id                                                        |
+|/orders/id     |  GET          |id                                                        |

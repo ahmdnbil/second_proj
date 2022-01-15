@@ -1,0 +1,9 @@
+POSTGRES_HOST     ------> the host which you can acess the database
+POSTGRES_DB       ------> database which you can store the tables and make migration to it
+POSTGRES_USER     ------> the user of postgres
+POSTGRES_PASSWORD ------> the password of the user
+POSTGRES_TEST_DB  ------> the database which the tests will run on
+ENV=dev           ------> by this condition we can make our tests
+BCRYPT_PASSOWRD   ------> bcrypt's passowrd'
+SALT_ROUND=10     ------> round's of salt'
+TOKEN_SECRET      ------> secret token

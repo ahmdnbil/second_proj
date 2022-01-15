@@ -31,16 +31,12 @@ describe('Order model', () => {
     });
     await storeProduct.create({ name: 'PC', price: '40$' });
     const order = await storeOrder.create({
-      product_id: 1,
-      quantity: 2,
       status: 'active',
       user_id: 1,
     });
 
     expect(order).toEqual({
       id: 1,
-      product_id: 1,
-      quantity: 2,
       status: 'active',
       user_id: 1,
     });
@@ -49,8 +45,6 @@ describe('Order model', () => {
     const result = await storeOrder.show(1);
     expect(result).toEqual({
       id: 1,
-      product_id: 1,
-      quantity: 2,
       status: 'active',
       user_id: 1,
     });

@@ -60,7 +60,7 @@ const authenticate = async (req: express.Request, res: express.Response) => {
 
 const userRoutes = (app: express.Application) => {
   app.get('/users', index);
-  app.get('/users/{:id}', show);
+  app.get('/users/:id', show);
   app.post('/users', create);
   app.delete('/users', deleted);
   app.post('/users/authenticate', authenticate);

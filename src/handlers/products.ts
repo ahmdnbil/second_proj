@@ -34,7 +34,7 @@ const deleted = async (_req: express.Request, res: express.Response) => {
 
 const productRoutes = (app: express.Application) => {
   app.get('/products', index);
-  app.get('/products/{:id}', show);
+  app.get('/products/:id', show);
   app.post('/products', create);
   app.delete('/products', deleted);
 };

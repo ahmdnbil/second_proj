@@ -36,6 +36,6 @@ describe('User model', () => {
   });
   it('index method to show all products', async () => {
     const result = await storeUser.index();
-    expect(result.length).toEqual(2);
+    expect(result.length).toEqual(3);
   });
 });
