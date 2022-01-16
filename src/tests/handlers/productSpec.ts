@@ -6,19 +6,6 @@ const req = supertest(app);
 describe('handelers product', () => {
   let tok: string;
   it('post return a token', async () => {
-    //first of all we create user
-    const user = {
-      firstName: 'ahmed4',
-      lastName: 'nabil7',
-      password: 'passadfasfdf',
-    };
-
-    const response = await req
-      .get('/users')
-      .send(user)
-      .set('Authorization', `Bearer ${tok}`);
-    tok = response.body;
-    //creating product for testing
     const product = {
       name: 'PS5',
       price: '300$',
@@ -29,6 +16,7 @@ describe('handelers product', () => {
       .set('Authorization', `Bearer ${tok}`);
     tok = res.body;
     const name = res.body.name;
+    console.log(name);
     expect(name).toEqual('PS5');
   });
 

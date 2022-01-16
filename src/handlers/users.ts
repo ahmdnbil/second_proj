@@ -5,13 +5,21 @@ import { User, StoreUser } from '../models/users';
 const storeUser = new StoreUser();
 
 const index = async (_req: express.Request, res: express.Response) => {
-  const users = await storeUser.index();
-  res.json(users);
+  try {
+    const users = await storeUser.index();
+    res.json(users);
+  } catch (e) {
+    res.json(e);
+  }
 };
 
 const show = async (_req: express.Request, res: express.Response) => {
-  const user = await storeUser.show(_req.body.id);
-  res.json(user);
+  try {
+    const user = await storeUser.show(_req.body.id);
+    res.json(user);
+  } catch (e) {
+    res.json(e);
+  }
 };
 
 const create = async (_req: express.Request, res: express.Response) => {
@@ -34,8 +42,12 @@ const create = async (_req: express.Request, res: express.Response) => {
 };
 
 const deleted = async (_req: express.Request, res: express.Response) => {
-  const deleted = await storeUser.delete(_req.body.id);
-  res.json(deleted);
+  try {
+    const deleted = await storeUser.delete(_req.body.id);
+    res.json(deleted);
+  } catch (error) {
+    res.json(error);
+  }
 };
 
 const authenticate = async (req: express.Request, res: express.Response) => {

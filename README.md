@@ -24,3 +24,7 @@
 - javascript
 - jasmine
 
+## Ports
+- For Database: 5432
+- For Server: 3000
+

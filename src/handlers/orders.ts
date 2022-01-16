@@ -1,16 +1,25 @@
 import express from 'express';
 import { ProductOrder, Order, StoreOrder } from '../models/orders';
+import jwt from 'jsonwebtoken';
 
 const storeOrder = new StoreOrder();
 
 const index = async (_req: express.Request, res: express.Response) => {
-  const orders = await storeOrder.index();
-  res.json(orders);
+  try {
+    const orders = await storeOrder.index();
+    res.json(orders);
+  } catch (e) {
+    res.json(e);
+  }
 };
 
 const show = async (_req: express.Request, res: express.Response) => {
-  const product = await storeOrder.show(_req.body.id);
-  res.json(product);
+  try {
+    const product = await storeOrder.show(_req.body.id);
+    res.json(product);
+  } catch (e) {
+    res.json(e);
+  }
 };
 
 const addingProduct = async (_req: express.Request, res: express.Response) => {
@@ -43,16 +52,37 @@ const create = async (_req: express.Request, res: express.Response) => {
 };
 
 const deleted = async (_req: express.Request, res: express.Response) => {
-  const deleted = await storeOrder.delete(_req.body.id);
-  res.json(deleted);
+  try {
+    const deleted = await storeOrder.delete(_req.body.id);
+    res.json(deleted);
+  } catch (error) {
+    res.json(error);
+  }
 };
 
+//creating middleware for verifing
+const verify = (
+  _req: express.Request,
+  res: express.Response,
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  next: Function
+) => {
+  try {
+    const authorization = _req.headers.authorization || '';
+    const token = authorization.split(' ')[1];
+    jwt.verify(token, process.env.TOKEN_SECRET as string);
+    next();
+  } catch (e) {
+    res.json(e);
+    return;
+  }
+};
 const orderRoutes = (app: express.Application) => {
-  app.get('/orders', index);
-  app.get('/orders/id', show);
-  app.post('/orders', create);
-  app.delete('/orders', deleted);
-  app.post('/orders/add', addingProduct);
+  app.get('/orders', verify, index);
+  app.get('/orders/id', verify, show);
+  app.post('/orders', verify, create);
+  app.delete('/orders', verify, deleted);
+  app.post('/orders/add', verify, addingProduct);
 };
 
 export default orderRoutes;
