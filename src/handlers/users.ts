@@ -70,9 +70,27 @@ const authenticate = async (req: express.Request, res: express.Response) => {
   }
 };
 
+//creating middleware for verifing
+const verify = (
+  _req: express.Request,
+  res: express.Response,
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  next: Function
+) => {
+  try {
+    const authorization = _req.headers.authorization || '';
+    const token = authorization.split(' ')[1];
+    jwt.verify(token, process.env.TOKEN_SECRET as string);
+    next();
+  } catch (e) {
+    res.json(e);
+    return;
+  }
+};
+
 const userRoutes = (app: express.Application) => {
-  app.get('/users', index);
-  app.get('/users/:id', show);
+  app.get('/users', verify, index);
+  app.get('/users/:id', verify, show);
   app.post('/users', create);
   app.delete('/users', deleted);
   app.post('/users/authenticate', authenticate);

@@ -64,9 +64,9 @@ const verify = (
 };
 
 const productRoutes = (app: express.Application) => {
-  app.get('/products', verify, index);
-  app.get('/products/:id', verify, show);
-  app.post('/products', create);
+  app.get('/products', index);
+  app.get('/products/:id', show);
+  app.post('/products', verify, create);
   app.delete('/products', verify, deleted);
 };
 
